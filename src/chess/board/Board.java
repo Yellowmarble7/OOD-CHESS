@@ -3,11 +3,13 @@ package chess.board;
 import chess.pieces.*;
 import chess.util.Position;
 
-public Piece[][] board;
 
-public Board(){
-    board = new Piece[8][8];
-    setupBoard();
+public class Board(){
+    private Piece[][] board;
+
+     public Board() {
+        board = new Piece[8][8];
+        setupBoard();
 }
 
 private void setupBoard() {
