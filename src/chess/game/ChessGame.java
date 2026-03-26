@@ -2,6 +2,7 @@ package chess.game;
 
 import java.util.Scanner;
 import chess.board.Board;
+import chess.pieces.Piece;
 import chess.utils.Position;
 
 public class ChessGame {
@@ -42,8 +43,14 @@ public class ChessGame {
                     System.out.println("You must move a BLACK piece.");
                     continue;
                 }
-            
 
+                Piece target = board.getPiece(to);
+
+                if (target != null && target.getColor().equals(piece.getColor())) {
+                    System.out.println("You cannot capture your own piece.");
+                    continue;
+                }
+                
                 board.movePiece(from, to);
                 whiteTurn = !whiteTurn;
             } catch (Exception e) {
