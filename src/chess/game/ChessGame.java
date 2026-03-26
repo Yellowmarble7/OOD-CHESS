@@ -5,38 +5,38 @@ import chess.board.Board;
 import chess.utils.Position;
 
 public class ChessGame {
-    private Board board;
-    private Scanner scanner;
+    public static void main(String[] args) {
+        Board board = new Board();
+        Scanner scanner = new Scanner(System.in);
+        boolean whiteTurn = true;
 
-    public ChessGame() {
-        board = new Board();
-        scanner = new Scanner(System.in);
-    }
-
-    public void start() {
         while (true) {
-            System.out.println(board);
-            System.out.print("Enter your move (e.g., e2 e4): ");
-            String input = scanner.nextLine();
-            if (input.equals("exit")) {
-                break;
-            }
-            processMove(input);
-        }
-    }
+            board.displayBoard();
+            System.out.println((whiteTurn ? "White" : "Black") + " to move");
+            System.out.print("Enter move (example: E2 E4): ");
 
-    private void processMove(String input) {
-        String[] parts = input.split(" ");
-        if (parts.length != 2) {
-            System.out.println("Invalid move format.");
-            return;
+            String input = scanner.nextLine().trim();
+            String[] parts = input.split("\\s+");
+
+            if (parts.length != 2) {
+                System.out.println("Invalid format. Use: E2 E4");
+                continue;
+            }
+
+            try {
+                Position from = new Position(parts[0]);
+                Position to = new Position(parts[1]);
+
+                if (board.getPiece(from) == null) {
+                    System.out.println("No piece at that square.");
+                    continue;
+                }
+
+                board.movePiece(from, to);
+                whiteTurn = !whiteTurn;
+            } catch (Exception e) {
+                System.out.println("Invalid move input.");
+            }
         }
-        Position from = Position.fromString(parts[0]);
-        Position to = Position.fromString(parts[1]);
-        if (from == null || to == null) {
-            System.out.println("Invalid position.");
-            return;
-        }
-        board.movePiece(from, to);
     }
 }
