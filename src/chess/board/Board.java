@@ -7,11 +7,17 @@ import chess.utils.Position;
  * Represents the chess board as an 8x8 grid.
  */
 public class Board {
+/**
+ * 8x8 array representing the chess board.
+ */
     private Piece[][] board;
+    /**
+     * Creates a new chess board and initializes it.
+     */
 
-     public Board() {
-        board = new Piece[8][8];
-        setupBoard();
+public Board() {
+    board = new Piece[8][8];
+    setupBoard();
 }
 /**
  * Initializes the board with pieces in starting positions.
