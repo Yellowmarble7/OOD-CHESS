@@ -1,5 +1,8 @@
 package chess.board;
 
+import chess.pieces.*;
+import chess.util.Position;
+
 private Piece[][] board;
 
 public Board(){
