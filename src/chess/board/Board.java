@@ -51,16 +51,20 @@ public Piece movePiece(Position from, Position to){
     return piece;
 }
 
-public void displayBoard(){
-    for (int row = 0; row < 8; row++) {
-        for (int col = 0; col < 8; col++) {
-            Piece piece = board[row][col];
-            if (piece != null) {
-                System.out.print(piece.getSymbol() + " ");
-            } else {
-                System.out.print(". ");
+ public void displayBoard() {
+        System.out.println("  A  B  C  D  E  F  G  H");
+        for (int row = 0; row < 8; row++) {
+            System.out.print((8 - row) + " ");
+            for (int col = 0; col < 8; col++) {
+                Piece piece = board[row][col];
+                if (piece != null) {
+                    System.out.print(piece.getSymbol() + " ");
+                } else {
+                    System.out.print("## ");
+                }
             }
+            System.out.println(8 - row);
         }
-        System.out.println();
+        System.out.println("  A  B  C  D  E  F  G  H");
     }
 }
