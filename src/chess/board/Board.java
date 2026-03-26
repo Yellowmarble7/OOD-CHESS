@@ -1,10 +1,10 @@
 package chess.board;
 
 import chess.pieces.*;
-import chess.util.Position;
+import chess.utils.Position;
 
 
-public class Board(){
+public class Board{
     private Piece[][] board;
 
      public Board() {
