@@ -4,7 +4,8 @@ import java.util.List;
 import chess.utils.Position;
 
 /**
- * Moves a piece from one position to another.
+ * Abstract base class representing a chess piece.
+ * Stores the piece color and defines common behavior.
  */
 public abstract class Piece {
     protected String color;
