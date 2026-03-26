@@ -3,12 +3,42 @@ package chess.board;
 import chess.pieces.*;
 import chess.util.Position;
 
-private Piece[][] board;
+public Piece[][] board;
 
 public Board(){
     board = new Piece[8][8];
     setupBoard();
 }
+
+private void setupBoard() {
+        // black back row
+        board[0][0] = new Rook("black");
+        board[0][1] = new Knight("black");
+        board[0][2] = new Bishop("black");
+        board[0][3] = new Queen("black");
+        board[0][4] = new King("black");
+        board[0][5] = new Bishop("black");
+        board[0][6] = new Knight("black");
+        board[0][7] = new Rook("black");
+
+        for (int col = 0; col < 8; col++) {
+            board[1][col] = new Pawn("black");
+        }
+
+        // white back row
+        board[7][0] = new Rook("white");
+        board[7][1] = new Knight("white");
+        board[7][2] = new Bishop("white");
+        board[7][3] = new Queen("white");
+        board[7][4] = new King("white");
+        board[7][5] = new Bishop("white");
+        board[7][6] = new Knight("white");
+        board[7][7] = new Rook("white");
+
+        for (int col = 0; col < 8; col++) {
+            board[6][col] = new Pawn("white");
+        }
+    }
 
 public Piece getPiece(Position pos){
     return board[pos.getRow()][pos.getCol()];
