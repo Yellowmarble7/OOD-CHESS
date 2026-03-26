@@ -27,10 +27,22 @@ public class ChessGame {
                 Position from = new Position(parts[0]);
                 Position to = new Position(parts[1]);
 
-                if (board.getPiece(from) == null) {
+                var piece = board.getPiece(from);
+                if (piece == null) {
                     System.out.println("No piece at that square.");
                     continue;
                 }
+
+                if (whiteTurn && !piece.getColor().equals("white")) {
+                System.out.println("You must move a WHITE piece.");
+                continue;
+                }
+
+                if (!whiteTurn && !piece.getColor().equals("black")) {
+                    System.out.println("You must move a BLACK piece.");
+                    continue;
+                }
+            }
 
                 board.movePiece(from, to);
                 whiteTurn = !whiteTurn;

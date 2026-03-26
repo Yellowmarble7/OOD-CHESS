@@ -65,8 +65,8 @@ public Piece movePiece(Position from, Position to){
                     System.out.print("## ");
                 }
             }
-            System.out.println(8 - row);
+            System.out.println();
         }
-        System.out.println("  A  B  C  D  E  F  G  H");
+        
     }
 }
