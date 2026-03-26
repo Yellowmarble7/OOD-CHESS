@@ -42,7 +42,7 @@ public class ChessGame {
                     System.out.println("You must move a BLACK piece.");
                     continue;
                 }
-            }
+            
 
                 board.movePiece(from, to);
                 whiteTurn = !whiteTurn;
