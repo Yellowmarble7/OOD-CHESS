@@ -15,9 +15,9 @@ public class Position{
         char letter = pos.charAt(0);
         char number = pos.charAt(1);
 
+        letter = Character.toUpperCase(letter);
         this.col = letter - 'A';
         this.row = 8 - (number - '0'); //because of ASCII
-        letter = Character.toUpperCase(letter);
     }
 
     public int getRow() {
