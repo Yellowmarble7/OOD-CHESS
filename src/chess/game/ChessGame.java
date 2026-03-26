@@ -5,7 +5,15 @@ import chess.board.Board;
 import chess.pieces.Piece;
 import chess.utils.Position;
 
+/**
+ * The main driver class for the chess game.
+ * Handles user input and controlls the game loop.
+ */
 public class ChessGame {
+/**
+ * Runs the chess game loop, displays the board,
+ * and processes user moves.
+ */
     public static void main(String[] args) {
         Board board = new Board();
         Scanner scanner = new Scanner(System.in);
@@ -50,7 +58,7 @@ public class ChessGame {
                     System.out.println("You cannot capture your own piece.");
                     continue;
                 }
-                
+
                 board.movePiece(from, to);
                 whiteTurn = !whiteTurn;
             } catch (Exception e) {

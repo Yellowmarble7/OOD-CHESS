@@ -3,15 +3,19 @@ package chess.board;
 import chess.pieces.*;
 import chess.utils.Position;
 
-
-public class Board{
+/**
+ * Represents the chess board as an 8x8 grid.
+ */
+public class Board {
     private Piece[][] board;
 
      public Board() {
         board = new Piece[8][8];
         setupBoard();
 }
-
+/**
+ * Initializes the board with pieces in starting positions.
+ */
 private void setupBoard() {
         // black back row
         board[0][0] = new Rook("black");
@@ -41,18 +45,24 @@ private void setupBoard() {
             board[6][col] = new Pawn("white");
         }
     }
-
+/**
+ * Returns the piece at a given position.
+ */
 public Piece getPiece(Position pos){
     return board[pos.getRow()][pos.getCol()];
 }
-
+/**
+ * Moves a piece from one position to another.
+ */
 public Piece movePiece(Position from, Position to){
     Piece piece = board[from.getRow()][from.getCol()];
     board[from.getRow()][from.getCol()] = null;
     board[to.getRow()][to.getCol()] = piece;
     return piece;
 }
-
+/**
+ * Displays the current state of the board in the console.
+ */
  public void displayBoard() {
         System.out.println("  A  B  C  D  E  F  G  H");
         for (int row = 0; row < 8; row++) {

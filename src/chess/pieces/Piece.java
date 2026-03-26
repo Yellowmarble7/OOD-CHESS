@@ -3,6 +3,9 @@ package chess.pieces;
 import java.util.List;
 import chess.utils.Position;
 
+/**
+ * Moves a piece from one position to another.
+ */
 public abstract class Piece {
     protected String color;
 
@@ -14,6 +17,9 @@ public abstract class Piece {
         return color;
     }
 
+/**
+ * Returns the string representation of the piece.
+ */
     public abstract String getSymbol();
 
     public List<Position> possibleMoves(){
