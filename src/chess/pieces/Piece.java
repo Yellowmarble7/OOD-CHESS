@@ -9,11 +9,15 @@ import chess.utils.Position;
  */
 public abstract class Piece {
     protected String color;
-
+/**
+ * Creates a piece with a given color.
+ */
     public Piece(String color) {
         this.color = color;
     }
-
+/**
+ * Gets the color of the piece.
+ */
     public String getColor() {
         return color;
     }

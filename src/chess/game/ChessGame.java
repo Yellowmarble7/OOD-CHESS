@@ -36,7 +36,7 @@ public class ChessGame {
                 Position from = new Position(parts[0]);
                 Position to = new Position(parts[1]);
 
-                var piece = board.getPiece(from);
+                Piece piece = board.getPiece(from);
                 if (piece == null) {
                     System.out.println("No piece at that square.");
                     continue;
