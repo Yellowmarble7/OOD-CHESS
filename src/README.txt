@@ -4,3 +4,8 @@ How to run in VS terminal:
 cd src
 javac -d . chess\game\ChessGame.java
 java chess.game.ChessGame
+
+phase2:
+run in VS terminal:
+javac chess\game\ChessGUI.java
+java chess.game.ChessGUI
