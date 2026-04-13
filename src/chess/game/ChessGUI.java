@@ -38,10 +38,10 @@ public class ChessGUI {
                     square.setBackground(new Color(181, 136, 99));
                 }
 
-                Piece piece = board.getPiece(new Position(row, col));
-                if (piece != null) {
-                    square.setText(piece.getSymbol());
-                }
+                final int r = row;
+                final int c = col;
+
+                square.addActionListener(e -> handleSquareClick(r, c));
 
                 squares[row][col] = square;
                 boardPanel.add(square);
@@ -49,11 +49,31 @@ public class ChessGUI {
         }
 
         frame.add(boardPanel, BorderLayout.CENTER);
+        refreshBoard();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(ChessGUI::new);
-    }
-}
+ private void handleSquareClick(int row, int col) {
+        Position clicked = new Position(row, col);
+        Piece clickedPiece = board.getPiece(clicked);
+
+        if (selectedPosition == null) {
+            if (clickedPiece == null) {
+                return;
+            }
+            selectedPosition = clicked;
+            squares[row][col].setBorder(BorderFactory.createLineBorder(Color.YELLOW, 3));
+            return;
+        }
+
+        Position from = selectedPosition;
+        Position to = clicked;
+
+        Piece movingPiece = board.getPiece(from);
+        Piece targetPiece = board.getPiece(to);
+
+        if (movingPiece == null) {
+            clearSelection();
+            return;
+        }
