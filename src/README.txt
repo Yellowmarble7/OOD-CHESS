@@ -7,5 +7,6 @@ java chess.game.ChessGame
 
 phase2:
 run in VS terminal:
-javac chess\game\ChessGUI.java
+cd "C:\Users\Julie G. Torres\OOD CHESS\OOD-CHESS\src"
+javac -d . chess\game\ChessGUI.java
 java chess.game.ChessGUI
