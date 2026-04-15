@@ -77,3 +77,38 @@ public class ChessGUI {
             clearSelection();
             return;
         }
+
+        board.movePiece(from, to);
+
+        if (targetPiece != null && targetPiece.getSymbol().equals("bK") || targetPiece != null && targetPiece.getSymbol().equals("wK")) {
+            refreshBoard();
+            JOptionPane.showMessageDialog(null, "King captured. Game over!");
+            System.exit(0);
+        }
+
+        clearSelection();
+        refreshBoard();
+    }
+
+     private void clearSelection() {
+        if (selectedPosition != null) {
+            int row = selectedPosition.getRow();
+            int col = selectedPosition.getCol();
+            squares[row][col].setBorder(null);
+        }
+        selectedPosition = null;
+    }
+
+    private void refreshBoard() {
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+                Piece piece = board.getPiece(new Position(row, col));
+                squares[row][col].setText(piece == null ? "" : piece.getSymbol());
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(ChessGUI::new);
+    }
+}
