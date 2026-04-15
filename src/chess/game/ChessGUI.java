@@ -80,7 +80,7 @@ public class ChessGUI {
 
         board.movePiece(from, to);
 
-        if (targetPiece != null && targetPiece.getSymbol().equals("bK") || targetPiece != null && targetPiece.getSymbol().equals("wK")) {
+        if (targetPiece != null && (targetPiece.getSymbol().equals("bK") || targetPiece.getSymbol().equals("wK"))) {
             refreshBoard();
             JOptionPane.showMessageDialog(null, "King captured. Game over!");
             System.exit(0);
