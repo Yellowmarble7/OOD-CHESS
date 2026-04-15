@@ -10,7 +10,7 @@ import java.awt.*;
  * Main GUI window for the chess game.
  */
 public class ChessGUI {
-    
+    private Position selectedPosition = null;
     private final Board board;
     private final JButton[][] squares;
 
