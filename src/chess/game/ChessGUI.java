@@ -5,6 +5,7 @@ import chess.pieces.Piece;
 import chess.utils.Position;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 /**
  * Main GUI window for the chess game.
@@ -47,11 +48,29 @@ public class ChessGUI {
                 boardPanel.add(square);
             }
         }
-
         frame.add(boardPanel, BorderLayout.CENTER);
         refreshBoard();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        
+        /* Menu setup */
+        JMenuBar menuBar = new JMenuBar();
+        JMenu gameMenu = new JMenu("Game");
+
+        JMenuItem newGameItem = new JMenuItem("New Game");
+        JMenuItem saveGameItem = new JMenuItem("Save Game");
+        JMenuItem loadGameItem = new JMenuItem("Load Game");
+
+        newGameItem.addActionListener(e -> resetGame());
+        saveGameItem.addActionListener(e -> JOptionPane.showMessageDialog(frame, "Save not implemented yet."));
+        loadGameItem.addActionListener(e -> JOptionPane.showMessageDialog(frame, "Load not implemented yet."));
+
+        gameMenu.add(newGameItem);
+        gameMenu.add(saveGameItem);
+        gameMenu.add(loadGameItem);
+        menuBar.add(gameMenu);
+
+        frame.setJMenuBar(menuBar);
     }
 
  private void handleSquareClick(int row, int col) {
