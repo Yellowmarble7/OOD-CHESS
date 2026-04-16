@@ -35,3 +35,13 @@ public class ChessSettingsDialog extends JDialog {
                 (String) boardSizeBox.getSelectedItem()
             );
             dispose();
+
+            });
+
+        add(formPanel, BorderLayout.CENTER);
+        add(applyButton, BorderLayout.SOUTH);
+
+        pack();
+        setLocationRelativeTo(parent);
+    }
+}
