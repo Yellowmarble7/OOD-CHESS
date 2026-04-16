@@ -1,5 +1,5 @@
 package chess.game;
-
+import java.io.*;
 import chess.board.Board;
 import chess.pieces.Bishop;
 import chess.pieces.King;
@@ -16,6 +16,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.awt.event.ActionEvent;
 
 /**
  * Main GUI window for the chess game.
@@ -213,7 +214,7 @@ public class ChessGUI {
 }
 
     private Piece pieceFromSymbol(String symbol) {
-        
+
     String color = symbol.charAt(0) == 'w' ? "white" : "black";
     char type = symbol.charAt(1);
 
