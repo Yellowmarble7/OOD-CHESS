@@ -11,7 +11,6 @@ import chess.pieces.Rook;
 import chess.utils.Position;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 /**
  * Main GUI window for the chess game.
@@ -30,11 +29,11 @@ public class ChessGUI {
         board = new Board();
         squares = new JButton[8][8];
 
+        frame = new JFrame("Chess Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(700, 700);
         frame.setLayout(new BorderLayout());
-        frame = new JFrame("Chess Game");
-        
+
         JPanel boardPanel = new JPanel(new GridLayout(8, 8));
 
         for (int row = 0; row < 8; row++) {
@@ -63,7 +62,6 @@ public class ChessGUI {
         refreshBoard();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        frame.setJMenuBar(menuBar);
 
         /* Menu setup */
         JMenuBar menuBar = new JMenuBar();
@@ -82,8 +80,10 @@ public class ChessGUI {
         gameMenu.add(newGameItem);
         gameMenu.add(saveGameItem);
         gameMenu.add(loadGameItem);
-        menuBar.add(gameMenu);
         gameMenu.add(settingsItem);
+        menuBar.add(gameMenu);
+
+        frame.setJMenuBar(menuBar);
 
         applyBoardTheme();
         applyPieceStyle();
@@ -126,7 +126,7 @@ public class ChessGUI {
         JOptionPane.showMessageDialog(null, winner + " wins! King captured.");
         System.exit(0);
     }
-
+        whiteTurn = !whiteTurn;
         clearSelection();
         refreshBoard();
     }
@@ -252,9 +252,9 @@ public class ChessGUI {
         Color dark;
 
         switch (boardTheme) {
-            case "Gray" -> {
-                light = new Color(220, 220, 220);
-                dark = new Color(120, 120, 120);
+            case "Pink" -> {
+                light = new Color(255, 200, 220);
+                dark = new Color(200, 100, 140);
             }
             case "Blue" -> {
                 light = new Color(210, 230, 255);
