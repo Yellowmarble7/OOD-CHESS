@@ -268,6 +268,35 @@ public class ChessGUI {
         }
 }
 
+    private void applyPieceStyle() {
+        Font font;
+
+        switch (pieceStyle) {
+            case "Bold" -> font = new Font("Arial", Font.BOLD, 18);
+            case "Large" -> font = new Font("Arial", Font.BOLD, 24);
+            default -> font = new Font("Arial", Font.PLAIN, 18);
+        }
+
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+                squares[row][col].setFont(font);
+            }
+        }
+}
+
+    private void applyBoardSize() {
+        int size;
+
+        switch (boardSize) {
+            case "Small" -> size = 550;
+            case "Large" -> size = 850;
+            default -> size = 700;
+        }
+
+        frame.setSize(size, size);
+        frame.revalidate();
+}
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(ChessGUI::new);
     }
