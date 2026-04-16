@@ -14,7 +14,7 @@ public class ChessSettingsDialog extends JDialog {
         setLayout(new BorderLayout());
 
         JPanel formPanel = new JPanel(new GridLayout(3, 2, 10, 10));
-        boardThemeBox = new JComboBox<>(new String[] {"Classic", "Gray", "Blue"});
+        boardThemeBox = new JComboBox<>(new String[] {"Classic", "Pink", "Blue"});
         pieceStyleBox = new JComboBox<>(new String[] {"Default", "Bold", "Large"});
         boardSizeBox = new JComboBox<>(new String[] {"Small", "Medium", "Large"});
 

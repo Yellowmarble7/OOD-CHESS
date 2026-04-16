@@ -42,6 +42,9 @@ public class ChessGUI {
                 square.setFont(new Font("Arial", Font.BOLD, 18));
                 square.setFocusPainted(false);
                 square.setMargin(new Insets(0, 0, 0, 0));
+                square.setOpaque(true);
+                square.setContentAreaFilled(true);
+                square.setBorderPainted(false);
 
                 if ((row + col) % 2 == 0) {
                     square.setBackground(new Color(240, 217, 181));
@@ -65,7 +68,7 @@ public class ChessGUI {
 
         /* Menu setup */
         JMenuBar menuBar = new JMenuBar();
-        JMenu gameMenu = new JMenu("Game");
+        JMenu gameMenu = new JMenu("~Menu~");
 
         JMenuItem newGameItem = new JMenuItem("New Game");
         JMenuItem saveGameItem = new JMenuItem("Save Game");
@@ -253,8 +256,8 @@ public class ChessGUI {
 
         switch (boardTheme) {
             case "Pink" -> {
-                light = new Color(255, 200, 220);
-                dark = new Color(200, 100, 140);
+                light = new Color(255, 220, 235);
+                dark = new Color(230, 140, 180);
             }
             case "Blue" -> {
                 light = new Color(210, 230, 255);
