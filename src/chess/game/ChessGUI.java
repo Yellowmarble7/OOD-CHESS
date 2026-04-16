@@ -11,11 +11,6 @@ import chess.pieces.Rook;
 import chess.utils.Position;
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.awt.event.ActionEvent;
 
 /**
@@ -75,8 +70,8 @@ public class ChessGUI {
         JMenuItem loadGameItem = new JMenuItem("Load Game");
 
         newGameItem.addActionListener(e -> resetGame());
-        saveGameItem.addActionListener(e -> saveGame()));
-        loadGameItem.addActionListener(e -> loadGame()));
+        saveGameItem.addActionListener(e -> saveGame());
+        loadGameItem.addActionListener(e -> loadGame());
 
         gameMenu.add(newGameItem);
         gameMenu.add(saveGameItem);
@@ -152,25 +147,21 @@ public class ChessGUI {
     }
 
     private void saveGame() {
-    JFileChooser chooser = new JFileChooser();
-    chooser.setDialogTitle("Save Game");
+    File file = new File("savegame.txt");
 
-    if (chooser.showSaveDialog(frame) != JFileChooser.APPROVE_OPTION) {
-        return;
-    }
-
-    try (PrintWriter out = new PrintWriter(new FileWriter(chooser.getSelectedFile()))) {
+    try (PrintWriter out = new PrintWriter(new FileWriter(file))) {
         out.println(whiteTurn ? "WHITE" : "BLACK");
 
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
                 Piece piece = board.getPiece(new Position(row, col));
-                out.print((piece == null ? "##" : piece.getSymbol()));
+                out.print(piece == null ? "##" : piece.getSymbol());
                 if (col < 7) out.print(" ");
             }
             out.println();
         }
-        JOptionPane.showMessageDialog(frame, "Game saved.");
+
+        JOptionPane.showMessageDialog(frame, "Game saved to savegame.txt");
     } catch (IOException ex) {
         JOptionPane.showMessageDialog(frame, "Could not save game: " + ex.getMessage());
     }
