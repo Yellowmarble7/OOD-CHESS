@@ -30,11 +30,11 @@ public class ChessGUI {
         board = new Board();
         squares = new JButton[8][8];
 
-        JFrame frame = new JFrame("Chess Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(700, 700);
         frame.setLayout(new BorderLayout());
-
+        frame = new JFrame("Chess Game");
+        
         JPanel boardPanel = new JPanel(new GridLayout(8, 8));
 
         for (int row = 0; row < 8; row++) {
@@ -63,6 +63,7 @@ public class ChessGUI {
         refreshBoard();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        frame.setJMenuBar(menuBar);
 
         /* Menu setup */
         JMenuBar menuBar = new JMenuBar();
@@ -84,7 +85,11 @@ public class ChessGUI {
         menuBar.add(gameMenu);
         gameMenu.add(settingsItem);
 
-        frame.setJMenuBar(menuBar);
+        applyBoardTheme();
+        applyPieceStyle();
+        applyBoardSize();
+
+        
 
     }
 
