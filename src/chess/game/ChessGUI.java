@@ -68,7 +68,7 @@ public class ChessGUI {
 
         /* Menu setup */
         JMenuBar menuBar = new JMenuBar();
-        JMenu gameMenu = new JMenu("~Menu~");
+        JMenu gameMenu = new JMenu("Menu");
 
         JMenuItem newGameItem = new JMenuItem("New Game");
         JMenuItem saveGameItem = new JMenuItem("Save Game");
@@ -147,7 +147,7 @@ public class ChessGUI {
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
                 Piece piece = board.getPiece(new Position(row, col));
-                squares[row][col].setText(piece == null ? "" : piece.getSymbol());
+                squares[row][col].setText(piece == null ? "" : piece.getDisplaySymbol());
             }
         }
     }

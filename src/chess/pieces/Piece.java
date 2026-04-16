@@ -30,4 +30,27 @@ public abstract class Piece {
     public List<Position> possibleMoves(){
         return List.of();
     }
+
+/**
+ * Displays color for the piece.
+ */
+    public String getDisplaySymbol() {
+        String name = getClass().getSimpleName();
+
+        if (name.equals("Pawn")) {
+            return color.equals("white") ? "♙" : "♟";
+        } else if (name.equals("Rook")) {
+            return color.equals("white") ? "♖" : "♜";
+        } else if (name.equals("Knight")) {
+            return color.equals("white") ? "♘" : "♞";
+        } else if (name.equals("Bishop")) {
+            return color.equals("white") ? "♗" : "♝";
+        } else if (name.equals("Queen")) {
+            return color.equals("white") ? "♕" : "♛";
+        } else if (name.equals("King")) {
+            return color.equals("white") ? "♔" : "♚";
+        }
+
+    return getSymbol();}
+
 }
