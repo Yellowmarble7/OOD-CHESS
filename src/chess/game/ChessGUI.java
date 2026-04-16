@@ -212,24 +212,61 @@ public class ChessGUI {
 
     private Piece pieceFromSymbol(String symbol) {
 
-    String color = symbol.charAt(0) == 'w' ? "white" : "black";
-    char type = symbol.charAt(1);
+        String color = symbol.charAt(0) == 'w' ? "white" : "black";
+        char type = symbol.charAt(1);
 
-    return switch (type) {
-        case 'p' -> new Pawn(color);
-        case 'R' -> new Rook(color);
-        case 'N' -> new Knight(color);
-        case 'B' -> new Bishop(color);
-        case 'Q' -> new Queen(color);
-        case 'K' -> new King(color);
-        default -> throw new IllegalArgumentException("Unknown piece symbol: " + symbol);
-    };
+        return switch (type) {
+            case 'p' -> new Pawn(color);
+            case 'R' -> new Rook(color);
+            case 'N' -> new Knight(color);
+            case 'B' -> new Bishop(color);
+            case 'Q' -> new Queen(color);
+            case 'K' -> new King(color);
+            default -> throw new IllegalArgumentException("Unknown piece symbol: " + symbol);
+        };
 }
 
     private void openSettings() {
         ChessSettingsDialog dialog = new ChessSettingsDialog(frame, this);
         dialog.setVisible(true);
     }
+
+    public void applySettings(String theme, String pieceStyle, String size) {
+        boardTheme = theme;
+        this.pieceStyle = pieceStyle;
+        boardSize = size;
+
+        applyBoardTheme();
+        applyPieceStyle();
+        applyBoardSize();
+        refreshBoard();
+}
+
+    private void applyBoardTheme() {
+        Color light;
+        Color dark;
+
+        switch (boardTheme) {
+            case "Gray" -> {
+                light = new Color(220, 220, 220);
+                dark = new Color(120, 120, 120);
+            }
+            case "Blue" -> {
+                light = new Color(210, 230, 255);
+                dark = new Color(80, 120, 170);
+            }
+            default -> {
+                light = new Color(240, 217, 181);
+                dark = new Color(181, 136, 99);
+            }
+        }
+
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+                squares[row][col].setBackground((row + col) % 2 == 0 ? light : dark);
+            }
+        }
+}
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(ChessGUI::new);
