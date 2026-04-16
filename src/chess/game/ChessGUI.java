@@ -68,15 +68,18 @@ public class ChessGUI {
         JMenuItem newGameItem = new JMenuItem("New Game");
         JMenuItem saveGameItem = new JMenuItem("Save Game");
         JMenuItem loadGameItem = new JMenuItem("Load Game");
+        JMenuItem settingsItem = new JMenuItem("Settings");
 
         newGameItem.addActionListener(e -> resetGame());
         saveGameItem.addActionListener(e -> saveGame());
         loadGameItem.addActionListener(e -> loadGame());
+        settingsItem.addActionListener(e -> openSettings());
 
         gameMenu.add(newGameItem);
         gameMenu.add(saveGameItem);
         gameMenu.add(loadGameItem);
         menuBar.add(gameMenu);
+        gameMenu.add(settingsItem);
 
         frame.setJMenuBar(menuBar);
 
