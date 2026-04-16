@@ -12,8 +12,8 @@ import java.awt.event.ActionEvent;
  */
 public class ChessGUI {
     private Position selectedPosition = null;
-    private final Board board;
-    private final JButton[][] squares;
+    private Board board;
+    private JButton[][] squares;
 
     public ChessGUI() {
         board = new Board();
@@ -52,7 +52,7 @@ public class ChessGUI {
         refreshBoard();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        
+
         /* Menu setup */
         JMenuBar menuBar = new JMenuBar();
         JMenu gameMenu = new JMenu("Game");
@@ -71,6 +71,7 @@ public class ChessGUI {
         menuBar.add(gameMenu);
 
         frame.setJMenuBar(menuBar);
+
     }
 
  private void handleSquareClick(int row, int col) {
@@ -127,6 +128,12 @@ public class ChessGUI {
                 squares[row][col].setText(piece == null ? "" : piece.getSymbol());
             }
         }
+    }
+
+     private void resetGame() {
+        board = new Board();
+        selectedPosition = null;
+        refreshBoard();
     }
 
     public static void main(String[] args) {
