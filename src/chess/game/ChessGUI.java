@@ -1,10 +1,18 @@
 package chess.game;
 
 import chess.board.Board;
+import chess.pieces.Bishop;
+import chess.pieces.King;
+import chess.pieces.Knight;
+import chess.pieces.Pawn;
 import chess.pieces.Piece;
+import chess.pieces.Queen;
+import chess.pieces.Rook;
 import chess.utils.Position;
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -165,6 +173,59 @@ public class ChessGUI {
     } catch (IOException ex) {
         JOptionPane.showMessageDialog(frame, "Could not save game: " + ex.getMessage());
     }
+}
+
+    private void loadGame() {   
+    JFileChooser chooser = new JFileChooser();
+    chooser.setDialogTitle("Load Game");
+
+    if (chooser.showOpenDialog(frame) != JFileChooser.APPROVE_OPTION) {
+        return;
+    }
+
+    try (BufferedReader in = new BufferedReader(new FileReader(chooser.getSelectedFile()))) {
+        String turnLine = in.readLine();
+        whiteTurn = "WHITE".equalsIgnoreCase(turnLine.trim());
+
+        board.clearBoard();
+
+        for (int row = 0; row < 8; row++) {
+            String line = in.readLine();
+            if (line == null) {
+                throw new IOException("File ended early.");
+            }
+
+            String[] tokens = line.trim().split("\\s+");
+            for (int col = 0; col < 8; col++) {
+                if (!tokens[col].equals("##")) {
+                    board.setPiece(new Position(row, col), pieceFromSymbol(tokens[col]));
+                }
+            }
+        }
+
+        selectedPosition = null;
+        clearSelection();
+        refreshBoard();
+        JOptionPane.showMessageDialog(frame, "Game loaded.");
+    } catch (IOException | RuntimeException ex) {
+        JOptionPane.showMessageDialog(frame, "Could not load game: " + ex.getMessage());
+    }
+}
+
+    private Piece pieceFromSymbol(String symbol) {
+        
+    String color = symbol.charAt(0) == 'w' ? "white" : "black";
+    char type = symbol.charAt(1);
+
+    return switch (type) {
+        case 'p' -> new Pawn(color);
+        case 'R' -> new Rook(color);
+        case 'N' -> new Knight(color);
+        case 'B' -> new Bishop(color);
+        case 'Q' -> new Queen(color);
+        case 'K' -> new King(color);
+        default -> throw new IllegalArgumentException("Unknown piece symbol: " + symbol);
+    };
 }
 
     public static void main(String[] args) {
