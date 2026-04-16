@@ -85,15 +85,22 @@ public Piece movePiece(Position from, Position to){
         }
         
     }
+/**
+ * Resets the board to the starting configuration.
+ */
     public void resetBoard() {
     board = new Piece[8][8];
     setupBoard();
     }
-
+/**
+ * Clears all pieces from the board.
+ */
     public void clearBoard() {
         board = new Piece[8][8];
     }
-
+/**
+ * Places a piece at a specific position on the board.
+ */
     public void setPiece(Position pos, Piece piece) {
         board[pos.getRow()][pos.getCol()] = piece;
     }

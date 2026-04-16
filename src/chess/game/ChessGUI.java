@@ -13,7 +13,9 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Main GUI window for the chess game.
+ * Main GUI class for the chess game.
+ * Displays the board, handles user interaction,
+ * and manages game state and GUI features.
  */
 public class ChessGUI {
     private Position selectedPosition = null;
@@ -25,6 +27,10 @@ public class ChessGUI {
     private String pieceStyle = "Default";
     private String boardSize = "Medium";
 
+/**
+ * Creates the chess GUI window and initializes the board,
+ * menu system, and visual components.
+ */
     public ChessGUI() {
         board = new Board();
         squares = new JButton[8][8];
@@ -95,7 +101,10 @@ public class ChessGUI {
         
 
     }
-
+/**
+ * Handles user clicks on the chessboard.
+ * Selects a piece or moves it to a destination square.
+ */
  private void handleSquareClick(int row, int col) {
         Position clicked = new Position(row, col);
         Piece clickedPiece = board.getPiece(clicked);
@@ -133,8 +142,10 @@ public class ChessGUI {
         clearSelection();
         refreshBoard();
     }
-
-     private void clearSelection() {
+/**
+ * Clears the currently selected square and removes highlighting.
+ */
+    private void clearSelection() {
         if (selectedPosition != null) {
             int row = selectedPosition.getRow();
             int col = selectedPosition.getCol();
@@ -142,7 +153,9 @@ public class ChessGUI {
         }
         selectedPosition = null;
     }
-
+/**
+ * Updates the GUI board display based on the current board state.
+ */
     private void refreshBoard() {
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
@@ -151,7 +164,9 @@ public class ChessGUI {
             }
         }
     }
-
+/**
+ * Resets the game to the initial state.
+ */
      private void resetGame() {
         board.resetBoard();
         selectedPosition = null;
@@ -159,7 +174,9 @@ public class ChessGUI {
         clearSelection();
         refreshBoard();
     }
-
+/**
+ * Saves the current game state to a file.
+ */
     private void saveGame() {
     File file = new File("savegame.txt");
 
@@ -180,7 +197,9 @@ public class ChessGUI {
         JOptionPane.showMessageDialog(frame, "Could not save game: " + ex.getMessage());
     }
 }
-
+/**
+ * Loads a previously saved game state from a file.
+ */
     private void loadGame() {   
     JFileChooser chooser = new JFileChooser();
     chooser.setDialogTitle("Load Game");
@@ -217,7 +236,9 @@ public class ChessGUI {
         JOptionPane.showMessageDialog(frame, "Could not load game: " + ex.getMessage());
     }
 }
-
+/**
+ * Creates a Piece object from its string representation.
+ */
     private Piece pieceFromSymbol(String symbol) {
 
         String color = symbol.charAt(0) == 'w' ? "white" : "black";
@@ -233,12 +254,16 @@ public class ChessGUI {
             default -> throw new IllegalArgumentException("Unknown piece symbol: " + symbol);
         };
 }
-
+/**
+ * Opens the settings dialog window.
+ */
     private void openSettings() {
         ChessSettingsDialog dialog = new ChessSettingsDialog(frame, this);
         dialog.setVisible(true);
     }
-
+/**
+ * Applies user-selected settings to the board and pieces.
+ */
     public void applySettings(String theme, String pieceStyle, String size) {
         boardTheme = theme;
         this.pieceStyle = pieceStyle;
@@ -249,7 +274,9 @@ public class ChessGUI {
         applyBoardSize();
         refreshBoard();
 }
-
+/**
+ * Updates the board colors based onthe selected theme.
+ */
     private void applyBoardTheme() {
         Color light;
         Color dark;
@@ -275,6 +302,9 @@ public class ChessGUI {
             }
         }
 }
+/**
+ * Updates the appearance of the pieces (font and style).
+ */
     private void applyPieceStyle() {
         Font font;
 
@@ -290,7 +320,9 @@ public class ChessGUI {
             }
         }
     }
-
+/**
+ * Adjusts the size of the game window based on user selection.
+ */
     private void applyBoardSize() {
         int size;
 
@@ -303,7 +335,9 @@ public class ChessGUI {
         frame.setSize(size, size);
         frame.revalidate();
 }
-
+/**
+ * Main method for launching the chess GUI application.
+ */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(ChessGUI::new);
     }

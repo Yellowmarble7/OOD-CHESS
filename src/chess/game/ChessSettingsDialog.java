@@ -2,13 +2,18 @@ package chess.game;
 
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * Settings dialog that allows users to customize
+ * board theme, piece style, and board size.
+ */
 public class ChessSettingsDialog extends JDialog {
 
     private final JComboBox<String> boardThemeBox;
     private final JComboBox<String> pieceStyleBox;
     private final JComboBox<String> boardSizeBox;
-
+/**
+ * Creates the settings dialog and initializes UI components.
+ */
     public ChessSettingsDialog(JFrame parent, ChessGUI gui) {
         super(parent, "Settings", true);
         setLayout(new BorderLayout());
