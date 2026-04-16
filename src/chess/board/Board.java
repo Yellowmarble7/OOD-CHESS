@@ -85,4 +85,16 @@ public Piece movePiece(Position from, Position to){
         }
         
     }
+    public void resetBoard() {
+    board = new Piece[8][8];
+    setupBoard();
+    }
+
+    public void clearBoard() {
+        board = new Piece[8][8];
+    }
+
+    public void setPiece(Position pos, Piece piece) {
+        board[pos.getRow()][pos.getCol()] = piece;
+    }
 }

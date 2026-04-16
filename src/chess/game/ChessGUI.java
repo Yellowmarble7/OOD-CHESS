@@ -5,7 +5,6 @@ import chess.pieces.Piece;
 import chess.utils.Position;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 /**
  * Main GUI window for the chess game.
@@ -14,6 +13,8 @@ public class ChessGUI {
     private Position selectedPosition = null;
     private Board board;
     private JButton[][] squares;
+    private JFrame frame;
+    private boolean whiteTurn = true;
 
     public ChessGUI() {
         board = new Board();
@@ -62,8 +63,8 @@ public class ChessGUI {
         JMenuItem loadGameItem = new JMenuItem("Load Game");
 
         newGameItem.addActionListener(e -> resetGame());
-        saveGameItem.addActionListener(e -> JOptionPane.showMessageDialog(frame, "Save not implemented yet."));
-        loadGameItem.addActionListener(e -> JOptionPane.showMessageDialog(frame, "Load not implemented yet."));
+        saveGameItem.addActionListener(e -> saveGame()));
+        loadGameItem.addActionListener(e -> loadGame()));
 
         gameMenu.add(newGameItem);
         gameMenu.add(saveGameItem);
@@ -131,8 +132,10 @@ public class ChessGUI {
     }
 
      private void resetGame() {
-        board = new Board();
+        board.resetBoard();
         selectedPosition = null;
+        whiteTurn = true;
+        clearSelection();
         refreshBoard();
     }
 
