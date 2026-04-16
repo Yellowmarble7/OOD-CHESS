@@ -38,17 +38,17 @@ public abstract class Piece {
         String name = getClass().getSimpleName();
 
         if (name.equals("Pawn")) {
-            return color.equals("white") ? "♙" : "♟";
+            return color.equals("white") ? "\u2659" : "\u265F";
         } else if (name.equals("Rook")) {
-            return color.equals("white") ? "♖" : "♜";
+            return color.equals("white") ? "\u2656" : "\u265C";
         } else if (name.equals("Knight")) {
-            return color.equals("white") ? "♘" : "♞";
+            return color.equals("white") ? "\u2658" : "\u265E";
         } else if (name.equals("Bishop")) {
-            return color.equals("white") ? "♗" : "♝";
+            return color.equals("white") ? "\u2657" : "\u265D";
         } else if (name.equals("Queen")) {
-            return color.equals("white") ? "♕" : "♛";
+            return color.equals("white") ? "\u2655" : "\u265B";
         } else if (name.equals("King")) {
-            return color.equals("white") ? "♔" : "♚";
+            return color.equals("white") ? "\u2654" : "\u265A";
         }
 
     return getSymbol();}

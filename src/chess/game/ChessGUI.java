@@ -39,7 +39,7 @@ public class ChessGUI {
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
                 JButton square = new JButton();
-                square.setFont(new Font("Arial", Font.BOLD, 18));
+                square.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 28));
                 square.setFocusPainted(false);
                 square.setMargin(new Insets(0, 0, 0, 0));
                 square.setOpaque(true);
@@ -275,14 +275,13 @@ public class ChessGUI {
             }
         }
 }
-
     private void applyPieceStyle() {
         Font font;
 
         switch (pieceStyle) {
-            case "Bold" -> font = new Font("Arial", Font.BOLD, 18);
-            case "Large" -> font = new Font("Arial", Font.BOLD, 24);
-            default -> font = new Font("Arial", Font.PLAIN, 18);
+            case "Bold" -> font = new Font("Segoe UI Symbol", Font.BOLD, 28);
+            case "Large" -> font = new Font("Segoe UI Symbol", Font.BOLD, 36);
+            default -> font = new Font("Segoe UI Symbol", Font.PLAIN, 28);
         }
 
         for (int row = 0; row < 8; row++) {
@@ -290,7 +289,7 @@ public class ChessGUI {
                 squares[row][col].setFont(font);
             }
         }
-}
+    }
 
     private void applyBoardSize() {
         int size;
