@@ -22,6 +22,9 @@ public class ChessGUI {
     private JButton[][] squares;
     private JFrame frame;
     private boolean whiteTurn = true;
+    private String boardTheme = "Classic";
+    private String pieceStyle = "Default";
+    private String boardSize = "Medium";
 
     public ChessGUI() {
         board = new Board();
@@ -222,6 +225,11 @@ public class ChessGUI {
         default -> throw new IllegalArgumentException("Unknown piece symbol: " + symbol);
     };
 }
+
+    private void openSettings() {
+        ChessSettingsDialog dialog = new ChessSettingsDialog(frame, this);
+        dialog.setVisible(true);
+    }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(ChessGUI::new);
