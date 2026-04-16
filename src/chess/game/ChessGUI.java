@@ -5,6 +5,9 @@ import chess.pieces.Piece;
 import chess.utils.Position;
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Main GUI window for the chess game.
@@ -138,6 +141,31 @@ public class ChessGUI {
         clearSelection();
         refreshBoard();
     }
+
+    private void saveGame() {
+    JFileChooser chooser = new JFileChooser();
+    chooser.setDialogTitle("Save Game");
+
+    if (chooser.showSaveDialog(frame) != JFileChooser.APPROVE_OPTION) {
+        return;
+    }
+
+    try (PrintWriter out = new PrintWriter(new FileWriter(chooser.getSelectedFile()))) {
+        out.println(whiteTurn ? "WHITE" : "BLACK");
+
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+                Piece piece = board.getPiece(new Position(row, col));
+                out.print((piece == null ? "##" : piece.getSymbol()));
+                if (col < 7) out.print(" ");
+            }
+            out.println();
+        }
+        JOptionPane.showMessageDialog(frame, "Game saved.");
+    } catch (IOException ex) {
+        JOptionPane.showMessageDialog(frame, "Could not save game: " + ex.getMessage());
+    }
+}
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(ChessGUI::new);
