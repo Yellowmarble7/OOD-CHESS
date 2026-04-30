@@ -297,4 +297,25 @@ public boolean isPathClear(Position from, Position to) {
     return true;
 }
 
+/**
+ * Checks if move is valid.
+ */
+public boolean isValidMove(Position from, Position to) {
+    if (!isInsideBoard(from) || !isInsideBoard(to)) {
+        return false;
+    }
+
+    Piece piece = getPiece(from);
+    if (piece == null) {
+        return false;
+    }
+
+    Piece target = getPiece(to);
+    if (target != null && target.getColor().equals(piece.getColor())) {
+        return false;
+    }
+
+    return piece.isValidMove(from, to, this);
+}
+
 }
