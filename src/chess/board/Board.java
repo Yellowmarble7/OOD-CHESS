@@ -215,4 +215,22 @@ public boolean isKingInCheck(String color) {
     return false;
 }
 
+/**
+ * Prevents illegal moves that would place the king in check.
+ */
+public boolean wouldLeaveKingInCheck(Position from, Position to, String color) {
+    Piece movingPiece = getPiece(from);
+    Piece capturedPiece = getPiece(to);
+
+    board[to.getRow()][to.getCol()] = movingPiece;
+    board[from.getRow()][from.getCol()] = null;
+
+    boolean inCheck = isKingInCheck(color);
+
+    board[from.getRow()][from.getCol()] = movingPiece;
+    board[to.getRow()][to.getCol()] = capturedPiece;
+
+    return inCheck;
+}
+
 }
