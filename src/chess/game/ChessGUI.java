@@ -113,40 +113,43 @@ public class ChessGUI {
             if (clickedPiece == null) {
                 return;
             }
-            selectedPosition = clicked;
-            squares[row][col].setBorder(BorderFactory.createLineBorder(Color.YELLOW, 3));
+
+            if (whiteTurn && !clickedPiece.getColor().equals("white")) {
             return;
+        }
+
+        if (!whiteTurn && !clickedPiece.getColor().equals("black")) {
+            return;
+        }
+
+        selectedPosition = clicked;
+        squares[row][col].setBorder(BorderFactory.createLineBorder(Color.YELLOW, 3));
+        return;
         }
 
         Position from = selectedPosition;
         Position to = clicked;
-
-        if (board.isValidMove(from, to)) {
-            board.movePiece(from, to);
-            whiteTurn = !whiteTurn;
-            refreshBoard();
-        } else {
-            JOptionPane.showMessageDialog(frame, "Illegal move.");
-        }
+        Piece movingPiece = board.getPiece(from);
 
         if (movingPiece == null) {
-            clearSelection();
-            return;
+        clearSelection();
+        return;
+        }
+
+        if (!board.isValidMove(from, to)) {
+        JOptionPane.showMessageDialog(frame, "Illegal move.");
+        clearSelection();
+        refreshBoard();
+        return;
         }
 
         board.movePiece(from, to);
-
-        if (targetPiece != null && 
-        (targetPiece.getSymbol().equals("bK") || targetPiece.getSymbol().equals("wK"))) {
-        refreshBoard();
-        String winner = movingPiece.getColor().equals("white") ? "White" : "Black";
-        JOptionPane.showMessageDialog(null, winner + " wins! King captured.");
-        System.exit(0);
-    }
         whiteTurn = !whiteTurn;
+
         clearSelection();
         refreshBoard();
-    }
+}
+
 /**
  * Clears the currently selected square and removes highlighting.
  */
