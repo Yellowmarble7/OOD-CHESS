@@ -146,4 +146,34 @@ public boolean isPathClear(Position from, Position to) {
     return true;
 }
 
+/**
+ * Checks if move is valid.
+ */
+public boolean isValidMove(Position from, Position to, boolean whiteTurn) {
+    if (!isInsideBoard(from) || !isInsideBoard(to)) {
+        return false;
+    }
+    Piece piece = getPiece(from);
+    if (piece == null) {
+        return false;
+    }
+    if (whiteTurn && !piece.getColor().equals("white")) {
+        return false;
+    }
+    if (!whiteTurn && !piece.getColor().equals("black")) {
+        return false;
+    }
+    Piece target = getPiece(to);
+    if (target != null && target.getColor().equals(piece.getColor())) {
+        return false;
+    }
+    if (!piece.isValidMove(from, to, this)) {
+        return false;
+    }
+    if (wouldLeaveKingInCheck(from, to, piece.getColor())) {
+        return false;
+    }
+    return true;
+}
+
 }
