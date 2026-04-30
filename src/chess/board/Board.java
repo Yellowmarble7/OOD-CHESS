@@ -191,4 +191,28 @@ public Position findKing(String color) {
     return null;
 }
 
+/**
+ * Checks if king is in check.
+ */
+public boolean isKingInCheck(String color) {
+    Position kingPos = findKing(color);
+    if (kingPos == null) {
+        return false;
+    }
+
+    for (int row = 0; row < 8; row++) {
+        for (int col = 0; col < 8; col++) {
+            Piece piece = board[row][col];
+            if (piece != null && !piece.getColor().equals(color)) {
+                Position from = new Position(row, col);
+                if (piece.isValidMove(from, kingPos, this)) {
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
+}
+
 }
