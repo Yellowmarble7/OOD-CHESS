@@ -117,5 +117,12 @@ public Piece movePiece(Position from, Position to){
         return false;
     }
 }
+/**
+ * Checks if piece isInsideBoard.
+ */
+    public boolean isInsideBoard(Position pos) {
+    return pos.getRow() >= 0 && pos.getRow() < 8 &&
+           pos.getCol() >= 0 && pos.getCol() < 8;
+}
 
 }
