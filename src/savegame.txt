@@ -1,7 +1,7 @@
 WHITE
 bR bN bB bQ bK bB bN bR
-bp bp bp ## bp bp bp bp
-## ## ## bp ## ## ## ##
+bp bp bp bp bp bp bp bp
+## ## ## ## ## ## ## ##
 ## ## ## ## ## ## ## ##
 ## ## ## ## ## ## ## ##
 ## ## ## ## ## ## ## ##

@@ -121,8 +121,13 @@ public class ChessGUI {
         Position from = selectedPosition;
         Position to = clicked;
 
-        Piece movingPiece = board.getPiece(from);
-        Piece targetPiece = board.getPiece(to);
+        if (board.isValidMove(from, to)) {
+            board.movePiece(from, to);
+            whiteTurn = !whiteTurn;
+            refreshBoard();
+        } else {
+            JOptionPane.showMessageDialog(frame, "Illegal move.");
+        }
 
         if (movingPiece == null) {
             clearSelection();

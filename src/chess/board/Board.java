@@ -104,4 +104,18 @@ public Piece movePiece(Position from, Position to){
     public void setPiece(Position pos, Piece piece) {
         board[pos.getRow()][pos.getCol()] = piece;
     }
+/**
+ * Checks if move is valid.
+ */
+    public boolean isValidMove(Position from, Position to) {
+    Piece piece = getPiece(from);
+    if (piece == null) {
+        return false; // No piece at the source position
+    }
+    // Check if the destination is within bounds
+    if (!to.isValid()) {
+        return false;
+    }
+}
+
 }

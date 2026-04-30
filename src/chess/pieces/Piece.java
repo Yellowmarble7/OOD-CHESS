@@ -2,6 +2,7 @@ package chess.pieces;
 
 import java.util.List;
 import chess.utils.Position;
+import chess.board.Board;
 
 /**
  * Abstract base class representing a chess piece.
@@ -30,6 +31,10 @@ public abstract class Piece {
     public List<Position> possibleMoves(){
         return List.of();
     }
+/**
+ * Force subclass to define its own movement rules.
+ */
+    public abstract boolean isValidMove(Position from, Position to, Board board);
 
 /**
  * Displays color for the piece.
