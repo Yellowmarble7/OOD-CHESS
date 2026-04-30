@@ -125,4 +125,25 @@ public Piece movePiece(Position from, Position to){
            pos.getCol() >= 0 && pos.getCol() < 8;
 }
 
+/**
+ * Checks if path is clear.
+ */
+public boolean isPathClear(Position from, Position to) {
+    int rowStep = Integer.compare(to.getRow(), from.getRow());
+    int colStep = Integer.compare(to.getCol(), from.getCol());
+
+    int row = from.getRow() + rowStep;
+    int col = from.getCol() + colStep;
+
+    while (row != to.getRow() || col != to.getCol()) {
+        if (board[row][col] != null) {
+            return false;
+        }
+        row += rowStep;
+        col += colStep;
+    }
+
+    return true;
+}
+
 }
