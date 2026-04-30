@@ -233,4 +233,39 @@ public boolean wouldLeaveKingInCheck(Position from, Position to, String color) {
     return inCheck;
 }
 
+/**
+ * Checkmate!
+ */
+public boolean isCheckmate(String color) {
+    if (!isKingInCheck(color)) {
+        return false;
+    }
+
+    boolean whiteTurn = color.equals("white");
+
+    for (int fromRow = 0; fromRow < 8; fromRow++) {
+        for (int fromCol = 0; fromCol < 8; fromCol++) {
+            Piece piece = board[fromRow][fromCol];
+
+            if (piece == null || !piece.getColor().equals(color)) {
+                continue;
+            }
+
+            Position from = new Position(fromRow, fromCol);
+
+            for (int toRow = 0; toRow < 8; toRow++) {
+                for (int toCol = 0; toCol < 8; toCol++) {
+                    Position to = new Position(toRow, toCol);
+
+                    if (isValidMove(from, to, whiteTurn)) {
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+
+    return true;
+}
+
 }
