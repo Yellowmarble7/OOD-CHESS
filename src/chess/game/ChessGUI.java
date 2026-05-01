@@ -144,11 +144,24 @@ public class ChessGUI {
         }
 
         board.movePiece(from, to);
-        whiteTurn = !whiteTurn;
 
+        String opponentColor = movingPiece.getColor().equals("white") ? "black" : "white";
+
+        if (board.isCheckmate(opponentColor)) {
+            refreshBoard();
+            JOptionPane.showMessageDialog(frame,
+                (movingPiece.getColor().equals("white") ? "White" : "Black") + " wins by checkmate!");
+            System.exit(0);
+        }
+
+        if (board.isKingInCheck(opponentColor)) {
+            JOptionPane.showMessageDialog(frame,
+                (opponentColor.equals("white") ? "White" : "Black") + " is in check!");
+        }
+
+        whiteTurn = !whiteTurn;
         clearSelection();
         refreshBoard();
-}
 
 /**
  * Clears the currently selected square and removes highlighting.
