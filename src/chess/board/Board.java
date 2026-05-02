@@ -105,19 +105,6 @@ public Piece movePiece(Position from, Position to){
         board[pos.getRow()][pos.getCol()] = piece;
     }
 /**
- * Checks if move is valid.
- */
-    public boolean isValidMove(Position from, Position to) {
-    Piece piece = getPiece(from);
-    if (piece == null) {
-        return false; // No piece at the source position
-    }
-    // Check if the destination is within bounds
-    if (!to.isValid()) {
-        return false;
-    }
-}
-/**
  * Checks if piece isInsideBoard.
  */
     public boolean isInsideBoard(Position pos) {
@@ -268,38 +255,6 @@ public boolean isCheckmate(String color) {
     return true;
 }
 
-/**
- * Checks if square is valid.
- */
-public boolean isInsideBoard(Position pos) {
-    return pos.getRow() >= 0 && pos.getRow() < 8 &&
-           pos.getCol() >= 0 && pos.getCol() < 8;
-}
-
-/**
- * Checks if path is clear.
- */
-public boolean isPathClear(Position from, Position to) {
-    int rowStep = Integer.compare(to.getRow(), from.getRow());
-    int colStep = Integer.compare(to.getCol(), from.getCol());
-
-    int row = from.getRow() + rowStep;
-    int col = from.getCol() + colStep;
-
-    while (row != to.getRow() || col != to.getCol()) {
-        if (board[row][col] != null) {
-            return false;
-        }
-        row += rowStep;
-        col += colStep;
-    }
-
-    return true;
-}
-
-/**
- * Checks if move is valid.
- */
 public boolean isValidMove(Position from, Position to) {
     if (!isInsideBoard(from) || !isInsideBoard(to)) {
         return false;
@@ -315,7 +270,15 @@ public boolean isValidMove(Position from, Position to) {
         return false;
     }
 
-    return piece.isValidMove(from, to, this);
+    if (!piece.isValidMove(from, to, this)) {
+        return false;
+    }
+
+    if (wouldLeaveKingInCheck(from, to, piece.getColor())) {
+        return false;
+    }
+
+    return true;
 }
 
 }

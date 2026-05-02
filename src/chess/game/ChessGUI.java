@@ -162,7 +162,7 @@ public class ChessGUI {
         whiteTurn = !whiteTurn;
         clearSelection();
         refreshBoard();
-
+    }
 /**
  * Clears the currently selected square and removes highlighting.
  */
