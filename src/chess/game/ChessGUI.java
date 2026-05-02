@@ -166,6 +166,10 @@ public class ChessGUI {
         whiteTurn = !whiteTurn;
         clearSelection();
         refreshBoard();
+
+        if(vsComputer && !whiteTurn) {
+            makeComputerMove();
+        }
     }
 /**
  * Computer makes a move.
