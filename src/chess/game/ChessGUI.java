@@ -181,6 +181,27 @@ public class ChessGUI {
         }
         System.exit(0);
     }
+       
+    Move aiMove = legalMoves.get(0);
+
+    Piece movingPiece = board.getPiece(aiMove.getFrom());
+    board.movePiece(aiMove.getFrom(), aiMove.getTo());
+
+    String opponentColor = "white";
+
+    if (board.isCheckmate(opponentColor)) {
+        refreshBoard();
+        JOptionPane.showMessageDialog(frame, "Black wins by checkmate!");
+        System.exit(0);
+    }
+
+    if (board.isKingInCheck(opponentColor)) {
+        JOptionPane.showMessageDialog(frame, "White is in check!");
+    }
+
+    whiteTurn = true;
+    refreshBoard();
+}
 
 /**
  * Clears the currently selected square and removes highlighting.
