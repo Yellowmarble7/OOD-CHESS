@@ -13,6 +13,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 import chess.utils.Move;
+import java.util.Random;
 
 /**
  * Main GUI class for the chess game.
@@ -186,7 +187,8 @@ public class ChessGUI {
         System.exit(0);
     }
        
-    Move aiMove = legalMoves.get(0);
+    Random random = new Random();
+    Move aiMove = legalMoves.get(random.nextInt(legalMoves.size()));
 
     Piece movingPiece = board.getPiece(aiMove.getFrom());
     board.movePiece(aiMove.getFrom(), aiMove.getTo());
