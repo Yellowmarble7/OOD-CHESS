@@ -1,5 +1,7 @@
 package chess.utils;
-
+/**
+ * Manages chess moves.
+ */
 public class Move {
     private Position from;
     private Position to;
