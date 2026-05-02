@@ -2,6 +2,9 @@ package chess.board;
 
 import chess.pieces.*;
 import chess.utils.Position;
+import java.util.ArrayList;
+import java.util.List;
+import chess.utils.Move;
 
 /**
  * Represents the chess board as an 8x8 grid.
