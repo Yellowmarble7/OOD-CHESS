@@ -29,7 +29,7 @@ public class ChessGUI {
     private String pieceStyle = "Default";
     private String boardSize = "Medium";
     private boolean vsComputer = true;
-    
+
 
 /**
  * Creates the chess GUI window and initializes the board,
@@ -167,6 +167,21 @@ public class ChessGUI {
         clearSelection();
         refreshBoard();
     }
+/**
+ * Computer makes a move.
+ */
+    private void makeComputerMove() {
+    List<Move> legalMoves = board.getAllLegalMoves("black");
+
+    if (legalMoves.isEmpty()) {
+        if (board.isKingInCheck("black")) {
+            JOptionPane.showMessageDialog(frame, "White wins by checkmate!");
+        } else {
+            JOptionPane.showMessageDialog(frame, "Stalemate!");
+        }
+        System.exit(0);
+    }
+
 /**
  * Clears the currently selected square and removes highlighting.
  */
