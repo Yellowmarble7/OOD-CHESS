@@ -8,3 +8,12 @@ public class Move {
         this.from = from;
         this.to = to;
     }
+
+     public Position getFrom() {
+        return from;
+    }
+
+    public Position getTo() {
+        return to;
+    }
+}
