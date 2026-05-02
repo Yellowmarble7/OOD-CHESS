@@ -11,6 +11,8 @@ import chess.pieces.Rook;
 import chess.utils.Position;
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
+import chess.utils.Move;
 
 /**
  * Main GUI class for the chess game.
@@ -26,6 +28,8 @@ public class ChessGUI {
     private String boardTheme = "Classic";
     private String pieceStyle = "Default";
     private String boardSize = "Medium";
+    private boolean vsComputer = true;
+    
 
 /**
  * Creates the chess GUI window and initializes the board,
