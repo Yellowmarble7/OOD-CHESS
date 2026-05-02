@@ -296,4 +296,21 @@ public List<Move> getAllLegalMoves(String color) {
             if (piece == null || !piece.getColor().equals(color)) {
                 continue;
             }
+            Position from = new Position(fromRow, fromCol);
+
+            for (int toRow = 0; toRow < 8; toRow++) {
+                for (int toCol = 0; toCol < 8; toCol++) {
+                    Position to = new Position(toRow, toCol);
+
+                    if (isValidMove(from, to, whiteTurn)) {
+                        legalMoves.add(new Move(from, to));
+                    }
+                }
+            }
+        }
+    }
+
+    return legalMoves;
+}
+
 }
