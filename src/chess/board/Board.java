@@ -284,4 +284,16 @@ public boolean isValidMove(Position from, Position to) {
     return true;
 }
 
+
+public List<Move> getAllLegalMoves(String color) {
+    List<Move> legalMoves = new ArrayList<>();
+    boolean whiteTurn = color.equals("white");
+
+    for (int fromRow = 0; fromRow < 8; fromRow++) {
+        for (int fromCol = 0; fromCol < 8; fromCol++) {
+            Piece piece = board[fromRow][fromCol];
+
+            if (piece == null || !piece.getColor().equals(color)) {
+                continue;
+            }
 }
