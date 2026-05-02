@@ -190,7 +190,11 @@ public class ChessGUI {
     Random random = new Random();
     Move aiMove = legalMoves.get(random.nextInt(legalMoves.size()));
 
-    Piece movingPiece = board.getPiece(aiMove.getFrom());
+    System.out.println(
+    "AI move: (" + aiMove.getFrom().getRow() + "," + aiMove.getFrom().getCol() +
+    ") -> (" + aiMove.getTo().getRow() + "," + aiMove.getTo().getCol() + ")"
+    );
+
     board.movePiece(aiMove.getFrom(), aiMove.getTo());
 
     String opponentColor = "white";
