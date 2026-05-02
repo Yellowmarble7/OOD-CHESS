@@ -143,6 +143,10 @@ public boolean isValidMove(Position from, Position to, boolean whiteTurn) {
     if (!isInsideBoard(from) || !isInsideBoard(to)) {
         return false;
     }
+
+    if (from.getRow() == to.getRow() && from.getCol() == to.getCol()) {
+    return false;
+}
     Piece piece = getPiece(from);
     if (piece == null) {
         return false;
@@ -263,6 +267,10 @@ public boolean isValidMove(Position from, Position to) {
         return false;
     }
 
+    if (from.getRow() == to.getRow() && from.getCol() == to.getCol()) {
+        return false;
+    }
+    
     Piece piece = getPiece(from);
     if (piece == null) {
         return false;
